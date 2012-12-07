@@ -37,12 +37,15 @@ int main(void)
   switch (action){
     case 1: printf("Are you sure? [Yn] ");
             scanf(" %c", &yn);
-            if (yn == 'n' || yn == 'N'){
-              printf("\nSee you soon, adventurer!\n\n");
-              exit(0);
-            } else {
-              printf("\nA new adventure is about to begin!\n");
-              newGame();
+            switch (yn){
+              case 'n':
+              case 'N':
+                printf("\nSee you soon, adventurer!\n\n");
+                exit(0);
+              case 'y':
+              case 'Y':
+                printf("\nA new adventure is about to begin!\n");
+                newGame();
             }
             break;
 
