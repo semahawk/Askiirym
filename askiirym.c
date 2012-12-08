@@ -109,7 +109,6 @@ askforrace:
   printf("What is your choice? [1-4] ");
   get("%d", &action);
 
-  cl();
   switch (action){
     case 1: printf("You seem to be a human, and get +110 to money!\n");
             player.money += 110;
@@ -170,14 +169,15 @@ askforraiseness:
     default: printf("Unknown option %d [1-4]\n", action);
              goto askforraiseness;
   }
-askforhomeleaving:
+
   printf("\n");
 
-  printf("In age of 13 your parents kicked you out of the home. Why did they do that?\n\n"
+  printf("In age of 13 your parents kicked you out of home. Why did they do that?\n\n"
          "[1] Because you were too naughty?\n"
          "[2] You were too smart, and they didnt want you to waste your talents?\n"
          "[3] They lost your trust, because you had stolen money from them?\n"
          "[4] You left home without any help to look for true love?\n\n");
+askforhomeleaving:
     get("%d", &action);
 
 cl();
@@ -186,7 +186,7 @@ cl();
         case 1:printf("Since you were kid you couldnt stop your strenght, and you get +3 to attack!\n");
             player.attack+=3;
             break;
-        case 2:printf("You were very smart, and received a scholarship in size of 50 money!");
+        case 2:printf("You were very smart, and received a scholarship in size of 50 money!\n");
             player.money+=50;
             break;
         case 3:printf("You stole your parens money and hide them under stone, so noone found them, but you feel bad because of that. You gain 100 money, but loose 1 attack and 1 defense\n");
@@ -199,5 +199,32 @@ cl();
         default: printf("Unknown option %d [1-4]\n", action);
             goto askforhomeleaving;
     }
+    printf("\nAnd now you are here, between dirty Hunner Sea and high and steep Angin Mountains, heading to mistery Cimarian City. Why are you here?\n"
+           "[1] You met christian monk, who told you to visit this area to clean your soul\n"
+           "[2] You got a recommendation to work in nearest iron mine\n"
+           "[3] You want to make good deal and earn some money\n"
+           "[4] You are here to learn how to fight\n");
+askforreason:
+    get("%d",&action);
 
+    switch (action){
+        case 1:printf("You cleant your soul and made yoursefl more healthy. You get +20 HP!\n");
+            player.maxhp+=20;
+            player.hp+=20;
+            break;
+        case 2:printf("By working in mine you are getting stronger, and get extra +2 to attack! You also earned 50 money!\n");
+            player.attack+=2;
+            player.money+=50;
+            break;
+        case 3:printf("You made it! You sold some trolls skins, and earned 130 money!\n");
+            player.money+=130;
+            break;
+        case 4:printf("After several weeks of training, your attack and defense raised by 2, but you had to pay 100 money for that!\n");
+            player.attack+=2;
+            player.defense+=2;
+            player.money-=100;
+            break;
+        default:printf("Unknown option %d [1-4]\n", action);
+            goto askforreason;
+    }
 }//end of newGame
