@@ -72,7 +72,7 @@ askforaction:
 void newGame(void)
 {
   char yn;
-  int race;
+  int action;
 
 askforname:
   printf("So, what's your name, adventurer? (%d chars limit): ", MAX_NAME);
@@ -107,32 +107,69 @@ askforname:
   printf("\n");
 askforrace:
   printf("What is your choice? [1-4] ");
-  get("%d", &race);
+  get("%d", &action);
 
-  printf("\n");
-  switch (race){
-    case 1: printf("You seem to be a human, and get an extra money!\n");
-            player.money += 300;
+  cl();
+  switch (action){
+    case 1: printf("You seem to be a human, and get +110 to money!\n");
+            player.money += 110;
             player.race = 'h';
             break;
 
-    case 2: printf("It turned out you're an elf, you are more defensive!\n");
+    case 2: printf("It turned out you're an elf, you get +3 to defense!\n");
             player.defense += 3;
             player.race = 'e';
             break;
 
-    case 3: printf("You are an orc, you are a strong, very ugly being, you get more attack!\n");
+    case 3: printf("You are an orc, you are a strong, very ugly being, you get +3 to attack!\n");
             player.attack += 3;
             player.race = 'o';
             break;
 
-    case 4: printf("It seems you are a gnome, very short creature, but very healthy, you are healthier!\n");
-            player.hp += 60;
+    case 4: printf("It seems you are a gnome, very short creature, but very healthy, you are +30 more healthy!\n");
+            player.maxhp += 30;
+            player.hp += 30;
             player.race = 'g';
             break;
 
-    default: printf("Unknown race [1-4].\n");
+    default: printf("Unknown race %d [1-4].\n", action);
              goto askforrace;
   }
+  printf("\n");
+
+  printf("Tell me, where were you raised as a young being, %s?\n", player.name);
+  printf("\n");
+  printf("[1] In a town.\n");
+  printf("[2] In a village.\n");
+  printf("[3] In a forest.\n");
+  printf("[4] In your father's workshop.\n");
+  printf("\n");
+askforraiseness:
+  printf("Where was it? [1-4] ");
+  get("%d", &action);
+
+  cl();
+  switch (action){
+    case 1: printf("You were raised in a town, you know your way around. You get +100 money!\n");
+            player.money += 100;
+            break;
+
+    case 2: printf("You were raised in a village. Life there wasn't too easy. You get +10 health points!\n");
+            player.maxhp += 10;
+            player.hp += 10;
+            break;
+
+    case 3: printf("You were raised in a forest. You know the ways to survive an a wildness, you get +2 to defense!\n");
+            player.defense += 2;
+            break;
+
+    case 4: printf("Your father raised you in his workshop. You were ment to be a true man, stinking from a sweat. You get +3 to attack!\n");
+            player.attack += 3;
+            break;
+
+    default: printf("Unknown option %d [1-4]\n", action);
+             goto askforraiseness;
+  }
+  printf("\n");
 }
 
