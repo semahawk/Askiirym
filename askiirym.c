@@ -84,6 +84,7 @@ askforname:
   }
 
   // some initialization
+  player.maxhp   = 100;
   player.hp      = 100;
   player.defense = 10;
   player.attack  = 10;

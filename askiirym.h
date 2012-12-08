@@ -27,6 +27,7 @@
 struct Hero {
     char name[MAX_NAME];
     char race;
+    int maxhp;
     int hp;
     int defense;
     int attack;
