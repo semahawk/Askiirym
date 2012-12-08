@@ -27,6 +27,12 @@ struct Hero player;
 
 int main(void)
 {
+
+#if defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
+  printf("You are using Mac OS. That means your probably too dumb to play this very intelligent game. Have a nice day and GTFO.\n");
+  exit(1);
+#endif
+
   int action;
   char yn;
 
