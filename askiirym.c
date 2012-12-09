@@ -258,7 +258,7 @@ askforreason:
 
     switch (action){
         case 1:cl();
-            printf("You cleant your soul and made yoursefl more healthy. You get +20 HP!\n");
+            printf("You cleant your soul and made yourself more healthy. You get +20 HP!\n");
             player.maxhp+=20;
             player.hp+=20;
             break;
