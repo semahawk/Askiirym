@@ -36,5 +36,6 @@ struct Hero {
 };
 
 void newGame(void);
+void mainLoop(struct Hero);
 
 #endif /* ASKIIRYM_H */

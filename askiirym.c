@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #include "askiirym.h"
 
@@ -280,4 +282,32 @@ askforreason:
         default:printf("Unknown option %d [1-4]\n", action);
             goto askforreason;
     }
-}//end of newGame
+
+    printf("\nNow, here is the actuall game. You can exit anytime by typing 'exit' or 'quit'.\n\n");
+    mainLoop(player);
+} // end of newGame
+
+void mainLoop(struct Hero player)
+{
+  char *input, shell_prompt[100];
+
+  for (;;){
+    /* getting the current user */
+    snprintf(shell_prompt, sizeof(shell_prompt), "%s:%d/%d> ", player.name, player.hp, player.maxhp);
+    /* inputting */
+    input = readline(shell_prompt);
+    // eof
+    if (!input) break;
+    /* path completion when tab hit */
+    rl_bind_key('\t', rl_complete);
+    /* add the input to the history */
+    add_history(input);
+
+    if (!strcmp(input, "quit") || !strcmp(input, "exit")){
+      printf("\nHave a nice day!\n");
+      return;
+    } else
+      printf("=> %s\n", input);
+    /* do stuff */
+  }
+}
